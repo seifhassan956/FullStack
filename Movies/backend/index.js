@@ -14,8 +14,8 @@ const app = express();
 
 // Enable CORS for your frontend
 app.use(cors({
-  origin: 'http://localhost:5173', // allow your frontend
-  credentials: true,               // allow cookies if needed
+  origin: 'https://your-netlify-app.netlify.app',
+  credentials: true,               
 }));
 
 app.use(express.json());
