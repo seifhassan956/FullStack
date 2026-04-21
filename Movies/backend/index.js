@@ -14,7 +14,7 @@ const app = express();
 
 // Enable CORS for your frontend
 app.use(cors({
-  origin: 'https://seif-movies.netlify.app/',
+  origin: 'https://seif-movies.netlify.app',
   credentials: true,               
 }));
 
