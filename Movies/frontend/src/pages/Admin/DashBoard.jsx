@@ -6,7 +6,7 @@ import {
   Star,
   Zap
 } from 'lucide-react';
-import '../../styling/DashBoard.css';
+import "../../styling/Dashboard.css";
 import DashboardMovieCardWithApi from '../../components/MovieCardWithApi';
 
 const DashBoard = () => {
