@@ -10,10 +10,8 @@ const Header = ({ activeType, setActiveType }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
-  // 🔐 Auth state
   const { userInfo } = useSelector((state) => state.auth);
 
-  // Data fetching logic
   const movieRequest = useGetNewMoviesQuery(undefined, { skip: activeType !== "movie" });
   const seriesRequest = useGetTopSeriesQuery(undefined, { skip: activeType !== "tv" });
 
@@ -23,67 +21,77 @@ const Header = ({ activeType, setActiveType }) => {
   const featuredContent = Array.isArray(data) ? data.slice(0, 6) : [];
 
   return (
-    <header className="relative w-full h-[80vh] bg-[#141414]">
+    <header className="relative w-full h-[60vh] md:h-[80vh] bg-[#141414]">
       
-      <nav className="absolute top-0 left-0 w-full z-50 bg-gradient-to-b from-black/90 to-transparent p-6">
+      {/* NAVBAR */}
+      <nav className="absolute top-0 left-0 w-full z-50 bg-gradient-to-b from-black/90 via-black/40 to-transparent px-4 py-3 md:p-6">
         <div className="container mx-auto flex justify-between items-center">
 
-          {/* LEFT */}
-          <div className="flex items-center space-x-10">
-            <Link to="/" className="text-[#E50914] text-3xl font-black tracking-tighter">
-              SEIFMovies
+          {/* LEFT: Logo & Switcher */}
+          <div className="flex items-center gap-3 md:gap-6">
+            <Link
+              to="/"
+              className="text-[#E50914] text-xl md:text-3xl font-black tracking-tighter shrink-0"
+            >
+              SEIFMOVIES
             </Link>
 
-            <div className="flex bg-black/40 border border-gray-700 rounded-full p-1">
+            <div className="flex bg-black/60 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-xl">
               <button
                 onClick={() => setActiveType("movie")}
-                className={`px-4 py-1 rounded-full text-xs font-bold transition-all ${
-                  activeType === "movie" ? "bg-red-600 text-white" : "text-gray-400 hover:text-white"
+                className={`px-3 md:px-5 py-1 rounded-full text-[9px] md:text-xs font-bold transition-all uppercase tracking-wider ${
+                  activeType === "movie"
+                    ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
-                MOVIES
+                Movies
               </button>
 
               <button
                 onClick={() => setActiveType("tv")}
-                className={`px-4 py-1 rounded-full text-xs font-bold transition-all ${
-                  activeType === "tv" ? "bg-red-600 text-white" : "text-gray-400 hover:text-white"
+                className={`px-3 md:px-5 py-1 rounded-full text-[9px] md:text-xs font-bold transition-all uppercase tracking-wider ${
+                  activeType === "tv"
+                    ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
-                SERIES
+                Series
               </button>
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="flex items-center space-x-8">
+          {/* RIGHT: Search, List, User */}
+          <div className="flex items-center gap-3 md:gap-8">
 
-            {/* Search */}
+            {/* Search - Icon only on mobile */}
             <Link
               to="/search"
-              className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+              className="flex items-center gap-2 text-white/80 hover:text-white transition-colors p-1"
             >
-              <AiOutlineSearch size={22} />
-              <span className="text-sm font-bold uppercase hidden md:inline">
+              <AiOutlineSearch size={22} className="md:size-5" />
+              <span className="text-xs font-bold uppercase hidden lg:inline">
                 Search
               </span>
             </Link>
 
-            {/* ⭐ My List (ONLY if logged in) */}
+            {/* My List - Hidden on very small screens, visible from md up */}
             {userInfo && (
               <Link
                 to="/my-list"
-                className="text-white/80 hover:text-white transition-colors text-sm font-bold uppercase hidden md:inline"
+                className="text-white/80 hover:text-white transition-colors text-[10px] md:text-sm font-bold uppercase hidden sm:inline"
               >
                 My List
               </Link>
             )}
 
-            {/* User Dropdown */}
-            <User 
-              dropdownOpen={dropdownOpen} 
-              toggleDropdown={toggleDropdown} 
-            />
+            {/* User Dropdown - Simplified container */}
+            <div className="relative shrink-0">
+              <User
+                dropdownOpen={dropdownOpen}
+                toggleDropdown={toggleDropdown}
+              />
+            </div>
           </div>
 
         </div>
@@ -93,7 +101,7 @@ const Header = ({ activeType, setActiveType }) => {
       <div className="w-full h-full">
         {isLoading ? (
           <div className="h-full flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-red-600"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-red-600"></div>
           </div>
         ) : (
           <MovieSlider
@@ -104,7 +112,7 @@ const Header = ({ activeType, setActiveType }) => {
         )}
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#141414] to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-32 md:h-40 bg-gradient-to-t from-[#141414] to-transparent" />
     </header>
   );
 };

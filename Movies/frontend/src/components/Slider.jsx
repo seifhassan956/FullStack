@@ -1,7 +1,7 @@
 // src/components/Slider.jsx
 import React from 'react';
 import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const MovieSlider = ({ data, isHero }) => {
@@ -21,27 +21,50 @@ const MovieSlider = ({ data, isHero }) => {
     <div className="w-full h-full overflow-hidden">
       <Slider {...settings}>
         {data?.map((movie) => (
-          <div key={movie.id} className="relative w-full h-[80vh]">
+          <div key={movie.id} className="relative w-full h-[60vh] md:h-[80vh]">
+
             {/* BACKGROUND IMAGE */}
             <img
-              src={movie.backdrop_path ? `${BACKDROP_BASE_URL}${movie.backdrop_path}` : null}
-              alt={movie.title}
+              src={
+                movie.backdrop_path
+                  ? `${BACKDROP_BASE_URL}${movie.backdrop_path}`
+                  : ""
+              }
+              alt={movie.title || movie.original_title}
               className="w-full h-full object-cover"
             />
-            
-            {/* HERO CONTENT (Title & Description) */}
+
+            {/* DARK OVERLAY */}
+            <div className="absolute inset-0 bg-black/40" />
+
+            {/* HERO CONTENT */}
             {isHero && (
-              <div className="absolute inset-0 flex flex-col justify-center px-12 bg-black/30">
-                <div className="max-w-2xl space-y-4">
-                  <h2 className="text-5xl md:text-7xl font-black text-white drop-shadow-2xl uppercase tracking-tighter">
+              <div className="absolute inset-0 flex flex-col justify-end md:justify-center px-4 md:px-12 pb-10 md:pb-0">
+                
+                <div className="max-w-lg md:max-w-2xl space-y-2 md:space-y-4">
+
+                  {/* TITLE */}
+                  <h2 className="
+                    text-lg sm:text-xl md:text-5xl lg:text-7xl 
+                    font-black text-white uppercase tracking-tight 
+                    drop-shadow-2xl leading-tight
+                  ">
                     {movie.title || movie.original_title}
                   </h2>
-                  <p className="text-lg text-gray-200 line-clamp-3 drop-shadow-md font-medium">
+
+                  {/* DESCRIPTION */}
+                  <p className="
+                    text-[10px] sm:text-xs md:text-lg 
+                    text-gray-200 line-clamp-2 md:line-clamp-4 
+                    opacity-90
+                  ">
                     {movie.overview}
                   </p>
+
                 </div>
               </div>
             )}
+
           </div>
         ))}
       </Slider>

@@ -12,8 +12,8 @@ connectDB();
 
 const app = express();
 
-// Enable CORS for your frontend
 app.use(cors({
+  // origin: ['https://seif-movies.netlify.app','http://localhost:5173'],
   origin: 'https://seif-movies.netlify.app',
   credentials: true,               
 }));
