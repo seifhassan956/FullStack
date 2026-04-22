@@ -22,7 +22,7 @@ const Header = ({ activeType, setActiveType }) => {
 
   return (
     <header className="relative w-full h-[60vh] md:h-[80vh] bg-[#141414]">
-      
+
       {/* NAVBAR */}
       <nav className="absolute top-0 left-0 w-full z-50 bg-gradient-to-b from-black/90 via-black/40 to-transparent px-4 py-3 md:p-6">
         <div className="container mx-auto flex justify-between items-center">
@@ -39,22 +39,20 @@ const Header = ({ activeType, setActiveType }) => {
             <div className="flex bg-black/60 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-xl">
               <button
                 onClick={() => setActiveType("movie")}
-                className={`px-3 md:px-5 py-1 rounded-full text-[9px] md:text-xs font-bold transition-all uppercase tracking-wider ${
-                  activeType === "movie"
+                className={`px-3 md:px-5 py-1 rounded-full text-[9px] md:text-xs font-bold transition-all uppercase tracking-wider ${activeType === "movie"
                     ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
                     : "text-gray-400 hover:text-white"
-                }`}
+                  }`}
               >
                 Movies
               </button>
 
               <button
                 onClick={() => setActiveType("tv")}
-                className={`px-3 md:px-5 py-1 rounded-full text-[9px] md:text-xs font-bold transition-all uppercase tracking-wider ${
-                  activeType === "tv"
+                className={`px-3 md:px-5 py-1 rounded-full text-[9px] md:text-xs font-bold transition-all uppercase tracking-wider ${activeType === "tv"
                     ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
                     : "text-gray-400 hover:text-white"
-                }`}
+                  }`}
               >
                 Series
               </button>

@@ -42,10 +42,10 @@ const User = ({ dropdownOpen, toggleDropdown }) => {
           <AiOutlineLogin size={20} className="mr-1" />
           <span className="text-xs font-bold uppercase">Login</span>
         </Link>
-        <Link to="/register" className="flex items-center bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-all">
+        {/* <Link to="/register" className="flex items-center bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-all">
           <AiOutlineUserAdd size={18} className="mr-1" />
           <span className="text-xs font-bold uppercase">Register</span>
-        </Link>
+        </Link> */}
       </div>
     );
   }
